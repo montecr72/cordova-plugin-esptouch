@@ -46,6 +46,7 @@ public class esptouch2 extends CordovaPlugin {
       esptouchCallbackContext = callbackContext;
       synchronized (mLock) {
         final byte[] apSsid = strToByteArray(args.getString(0));
+        final byte[] apBssid = {0,0,0,0,0,0};
         final byte[] apPassword = strToByteArray(args.getString(1));
         final byte[] customData = strToByteArray(args.getString(2));
 
@@ -84,7 +85,7 @@ public class esptouch2 extends CordovaPlugin {
         };
         EspProvisioningRequest request = new EspProvisioningRequest.Builder(cordova.getActivity())
                 .setSSID(apSsid) // AP's SSID, nullable
-                //.setBSSID(apBssid) // AP's BSSID, nonnull
+                .setBSSID(apBssid) // AP's BSSID, nonnull
                 .setPassword(apPassword) // AP's password, nullable if the AP is open
                 .setReservedData(customData) // User's custom data, nullable. If not null, the max length is 127
                 // .setAESKey(aesKey) // nullable, if not null, it must be 16 bytes. App developer should negotiate an AES key with Device developer first.
