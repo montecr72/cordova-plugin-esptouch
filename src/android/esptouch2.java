@@ -49,7 +49,8 @@ public class esptouch2 extends CordovaPlugin {
         final byte[] apBssid =  {0,0,0,0,0,0};
         final byte[] apPassword = strToByteArray(args.getString(1));
         final byte[] customData = strToByteArray(args.getString(2));
-        final byte[] aesKey = strToByteArray(args.getString(2));
+        final byte[] aesKey = strToByteArray(args.getString(3));
+        
 
         provisioner = new EspProvisioner(cordova.getActivity());
         listener = new EspProvisioningListener() {
