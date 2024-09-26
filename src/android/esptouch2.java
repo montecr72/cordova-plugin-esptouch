@@ -46,10 +46,10 @@ public class esptouch2 extends CordovaPlugin {
       esptouchCallbackContext = callbackContext;
       synchronized (mLock) {
         final byte[] apSsid = strToByteArray(args.getString(0));
-        final byte[] apBssid =  {0,0,0,0,0,0};
-        final byte[] apPassword = strToByteArray(args.getString(1));
-        final byte[] customData = strToByteArray(args.getString(2));
-        final byte[] aesKey = strToByteArray(args.getString(3));
+        final byte[] apBssid =  strToByteArray(args.getString(1));
+        final byte[] apPassword = strToByteArray(args.getString(2));
+        final byte[] customData = strToByteArray(args.getString(3));
+        final byte[] aesKey = strToByteArray(args.getString(4));
         
 
         provisioner = new EspProvisioner(cordova.getActivity());
