@@ -135,5 +135,12 @@
 		<header-file src="src/ios/ESPUtils/ESPVersionMacro.h" />
 		<framework src="UIKit.framework" />
 		<framework src="Foundation.framework" />
+		<config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+			<string>This app needs access to You location when in use.</string>
+		</config-file>
+		<config-file target="*-Info.plist" parent="NSLocationAlwaysAndWhenInUseUsageDescription">
+			<string>This app needs access to You location always when in use.</string>
+		</config-file>
+		<resource-file src="src/ios/ru.lproj" />
 	</platform>
 </plugin>
