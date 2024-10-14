@@ -15,5 +15,8 @@ module.exports = {
   },
   disconnect: function (ssid, successCallback, failCallback) {
     exec(successCallback, failCallback, "wifi", "disconnect", [ssid]);
-  }
+  },
+  getPermissionLocation: function ( successCallback, failCallback) {
+    exec(successCallback, failCallback, "wifi", "getPermissionLocation", []);
+  },
 }
