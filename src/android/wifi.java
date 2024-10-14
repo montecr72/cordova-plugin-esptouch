@@ -26,6 +26,16 @@ public class wifi extends CordovaPlugin {
     private static final String TAG = "wifi";
     private WifiManager mWifiManager;
     private LocationManager mLocationManager;
+    private static final String ACCESS_FINE_LOCATION = android.Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final int LOCATION_REQUEST_CODE = 2; // Permissions request code
+
+    /**
+    * Request ACCESS_FINE_LOCATION Permission
+    * @param requestCode
+    */
+    protected void requestLocationPermission(int requestCode) {
+        cordova.requestPermission(this, requestCode, ACCESS_FINE_LOCATION);
+    }
 
     protected void checkLocation() {
         JSONObject result = new JSONObject();
@@ -105,6 +115,9 @@ public class wifi extends CordovaPlugin {
         } else if (action.equals("disconnect")) {
 
             callbackContext.success();
+        } else if (action.equals("getPermissionLocation")) {
+            cordova.requestPermission(this, LOCATION_REQUEST_CODE, ACCESS_FINE_LOCATION);
+            
         } else {
             callbackContext.error("can not find the function " + action);
         }
