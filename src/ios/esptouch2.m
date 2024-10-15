@@ -31,13 +31,14 @@ NSString *callback_ID2;
         NSString *apSsid = (NSString *)[command.arguments objectAtIndex:0];
         NSString *apPassword = (NSString *)[command.arguments objectAtIndex:1];
         NSString *customData = (NSString *)[command.arguments objectAtIndex:2];
+        NSString *secr = (NSString *)[command.arguments objectAtIndex:3];
         self.provisioner = [ESPProvisioner share];
         ESPProvisioningRequest *request = [[ESPProvisioningRequest alloc] init];
         request.ssid = [ESP_ByteUtil getBytesByNSString:apSsid];
         request.password = [ESP_ByteUtil getBytesByNSString:apPassword];
         request.reservedData = [ESP_ByteUtil getBytesByNSString:customData];
         // request.deviceCount = deviceCount;
-        // request.aesKey = aesKey;
+        request.aesKey = [ESP_ByteUtil getBytesByNSString:secr];//aesKey;
         [self.provisioner startProvisioning:request withDelegate:self];
     }];
 }
