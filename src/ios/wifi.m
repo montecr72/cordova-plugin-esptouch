@@ -11,12 +11,17 @@
     
     NSDictionary *wifiDic;
 
-    NSLog(@"current :%@", ESPTools.getCurrentWiFiSsid);
-    wifiDic = @{
-        @"ssid":ESPTools.getCurrentWiFiSsid,
-        @"bssid":ESPTools.getCurrentBSSID,
-        @"state":@"Connected"
-    };
+    if(ESPTools.getCurrentWiFiSsid){
+        wifiDic = @{
+            @"ssid":ESPTools.getCurrentWiFiSsid,
+            @"bssid":ESPTools.getCurrentBSSID,
+            @"state":@"Connected"
+        };
+    }else{
+        wifiDic = @{
+            @"state":@"bad request"
+        };
+    }
     
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:wifiDic];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
