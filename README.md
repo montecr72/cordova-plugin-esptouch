@@ -4,17 +4,18 @@
 本程序不在维护，新版本为[capacitor-esptouch](https://github.com/coloz/capacitor-esptouch)  
   
 ## совместимо
-ios 12.x  
+### ios 12.x  
     нужна Access WIFI Information competibelity
-android 5+  
+    
+### android 5+  
 
-## 参考引用  
+## sources
 https://github.com/EspressifApp/EsptouchForAndroid  
 https://github.com/EspressifApp/lib-esptouch-v2-android  
 https://github.com/EspressifApp/EsptouchForIOS  
 https://github.com/EspressifApp/EsptouchForIOS/tree/master/EspTouchDemo/ESPTouchV2  
 
-## 使用方法  
+## install
 ### 安装  
 ```
 cordova plugin add cordova-plugin-esptouch
