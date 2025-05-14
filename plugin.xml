@@ -139,5 +139,6 @@
 			<string>This app needs access to You location when in use.</string>
 		</config-file>		
 		<resource-file src="src/ios/ru.lproj" />
+		<resource-file src="src/ios/en.lproj" />
 	</platform>
 </plugin>
