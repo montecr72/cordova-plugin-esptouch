@@ -3,8 +3,9 @@
 
 本程序不在维护，新版本为[capacitor-esptouch](https://github.com/coloz/capacitor-esptouch)  
   
-## 支持平台  
+## совместимо
 ios 12.x  
+    нужна Access WIFI Information competibelity
 android 5+  
 
 ## 参考引用  
