@@ -22,7 +22,7 @@ cordova plugin add cordova-plugin-esptouch
 ```
 
 ### 使用方法 
-#### WiFi相关检查  
+#### WiFi information 
 ```javascript
 declare var wifi;
 
@@ -58,7 +58,7 @@ wifi.getConnectedInfo(
 ```javascript
 declare var esptouch2;
 
-esptouch2.start(ssid, password, customData, 
+esptouch2.start(ssid, bssid, pass, customData, aesKey,
   result => { console.log(result) }, 
   error => { console.log(error) }
 }
