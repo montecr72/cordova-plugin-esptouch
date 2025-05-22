@@ -25,24 +25,23 @@ NSString *callback_ID2;
 
 - (void) start:(CDVInvokedUrlCommand *)command{
     [self.commandDelegate runInBackground:^{
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         callback_ID2 = command.callbackId;
-
         NSString *apSsid = (NSString *)[command.arguments objectAtIndex:0];
-        NSString *apPassword = (NSString *)[command.arguments objectAtIndex:1];
-        NSString *customData = (NSString *)[command.arguments objectAtIndex:2];
-        NSString *secr = (NSString *)[command.arguments objectAtIndex:3];
+        NSString *apBssid = (NSString *)[command.arguments objectAtIndex:1];
+        NSString *apPassword = (NSString *)[command.arguments objectAtIndex:2];
+        NSString *customData = (NSString *)[command.arguments objectAtIndex:3];
+        NSString *aesKey = (NSString *)[command.arguments objectAtIndex:4];
         self.provisioner = [ESPProvisioner share];
         ESPProvisioningRequest *request = [[ESPProvisioningRequest alloc] init];
         request.ssid = [ESP_ByteUtil getBytesByNSString:apSsid];
+        request.bssid = [ESP_ByteUtil getBytesByNSString:apBssid];
         request.password = [ESP_ByteUtil getBytesByNSString:apPassword];
         request.reservedData = [ESP_ByteUtil getBytesByNSString:customData];
-        // request.deviceCount = deviceCount;
-        request.aesKey = [ESP_ByteUtil getBytesByNSString:secr];//aesKey;
+        request.aesKey = aesKey;
+                
         [self.provisioner startProvisioning:request withDelegate:self];
     }];
 }
-
 
 - (void) stop:(CDVInvokedUrlCommand *)command{
     [self.provisioner stopProvisioning];
