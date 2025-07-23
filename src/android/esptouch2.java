@@ -85,9 +85,9 @@ public class esptouch2 extends CordovaPlugin {
           public void onError(Exception e) {
           }
         };
-        if (aesKey != null && aesKey.length != 16) {
-            throw new IllegalArgumentException("AES Key must be null or 16 bytes| has " + aesKey.length);
-        }
+        //if (aesKey != null && aesKey.length != 16) {
+        //    throw new IllegalArgumentException("AES Key must be null or 16 bytes| has " + aesKey.length);
+        //}
         EspProvisioningRequest request = new EspProvisioningRequest.Builder(cordova.getActivity())
                 .setSSID(apSsid) // AP's SSID, nullable
                 .setBSSID(apBssid) // AP's BSSID, nonnull
