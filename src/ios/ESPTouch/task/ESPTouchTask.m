@@ -16,6 +16,11 @@
 #import "ESP_NetUtil.h"
 #import "ESPTouchTaskParameter.h"
 
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#endif
+
 #define ONE_DATA_LEN    3
 
 @interface ESPTouchTask ()
