@@ -1,7 +1,6 @@
 #import "wifi.h"
 #import <NetworkExtension/NetworkExtension.h>
 #import <CoreLocation/CoreLocation.h>
-#import <NetworkExtension/NetworkExtension.h>
 
 @implementation wifi
 
@@ -29,31 +28,33 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     */
 
-    NEHotspotNetwork fetchCurrentWithCompletionHandler:^(NEHotspotNetwork * _Nullable currentNetwork) {
-    NSDictionary *wifiDic;
-    
-    if (currentNetwork != nil) {
-        NSString *ssid = currentNetwork.SSID;
-        NSString *bssid = currentNetwork.BSSID;
+    // ИСПРАВЛЕНО: Добавлена открывающая скобка [ перед NEHotspotNetwork
+    [NEHotspotNetwork fetchCurrentWithCompletionHandler:^(NEHotspotNetwork * _Nullable currentNetwork) {
+        NSDictionary *wifiDic;
         
-        wifiDic = @{
-            @"ssid": ssid ? ssid : @"",
-            @"bssid": bssid ? bssid : @"",
-            @"state": @"Connected"
-        };
-    } else {
-        // Если вернулся nil, значит всё ещё не хватает прав/Capabilities в Xcode
-        wifiDic = @{
-            @"state": @"bad request"
-        };
-    }
-    
-    // ВАЖНО: Так как метод асинхронный, отправку ответа в Cordova (CDVPluginResult)
-    // нужно перенести СЮДА — внутрь этого блока completionHandler!
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:wifiDic];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}];
+        if (currentNetwork != nil) {
+            NSString *ssid = currentNetwork.SSID;
+            NSString *bssid = currentNetwork.BSSID;
+            
+            wifiDic = @{
+                @"ssid": ssid ? ssid : @"",
+                @"bssid": bssid ? bssid : @"",
+                @"state": @"Connected"
+            };
+        } else {
+            // Если вернулся nil, значит всё ещё не хватает прав/Capabilities в Xcode
+            wifiDic = @{
+                @"state": @"bad request"
+            };
+        }
+        
+        // ВАЖНО: Так как метод асинхронный, отправку ответа в Cordova (CDVPluginResult)
+        // нужно перенести СЮДА — внутрь этого блока completionHandler!
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:wifiDic];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
   
 }
 
 @end
+
